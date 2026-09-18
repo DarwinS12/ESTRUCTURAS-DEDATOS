@@ -1,0 +1,35 @@
+Diagrama del Arbol de Merkle (5 transacciones)
+================================================
+
+Nivel 0 (hojas): el hash de cada transaccion, una por una.
+
+  H1    H2    H3    H4    H5
+   |     |     |     |     |
+  Tx1   Tx2   Tx3   Tx4   Tx5   <- son 5 (numero impar), asi que Tx5 (H5) se duplica
+
+Nivel 1: cada nodo = hash de sus dos "hijos" del nivel anterior, concatenados.
+
+  A = hash(H1+H2)     B = hash(H3+H4)     C = hash(H5+H5)  <- H5 duplicado
+
+Nivel 2: se repite el mismo paso
+
+  D = hash(A+B)       E = hash(C+C)   <- quedaban 3 nodos (A, B, C), C se duplica
+
+Raiz (Merkle raiz): el ultimo hash, resultado de unir todo el arbol.
+
+              R = hash(D+E)
+
+
+Grafico
+================================================
+
+                          R
+                       /     \
+                     D         E
+                    / \         \
+                   A   B         C
+                  / \ / \        |
+                 H1 H2 H3 H4     H5
+
+- H5 no tiene pareja (son 5 hojas), por eso C se forma con H5 duplicado: C = hash(H5+H5).
+- Por la misma razon, C tampoco tiene pareja en su nivel, por eso E se forma con C duplicado: E = hash(C+C).
