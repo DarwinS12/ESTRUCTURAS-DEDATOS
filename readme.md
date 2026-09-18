@@ -1,4 +1,4 @@
- Estructura de Datos
+ ## Estructura de Datos
 
 **Estudiante:** DARWIN ESTEBAN SALAZAR GARCIA
 
